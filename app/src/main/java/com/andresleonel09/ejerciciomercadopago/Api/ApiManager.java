@@ -1,11 +1,12 @@
 package com.andresleonel09.ejerciciomercadopago.Api;
 
-import com.andresleonel09.ejerciciomercadopago.Models.MediosPago;
+import com.andresleonel09.ejerciciomercadopago.Models.Banco;
+import com.andresleonel09.ejerciciomercadopago.Models.CuotasPago;
+import com.andresleonel09.ejerciciomercadopago.Models.MedioDePago;
 
 import java.util.List;
 
 import retrofit2.Call;
-import rx.Observable;
 
 /**
  * Created by Andres-PC on 2018-12-05.
@@ -18,7 +19,15 @@ public class ApiManager {
         this.api = api;
     }
 
-    public Call<List<MediosPago>> getMediosDePago(String public_key){
+    public Call<List<MedioDePago>> getMediosDePago(String public_key){
         return api.getMediosDePago(public_key);
+    }
+
+    public Call<List<Banco>> getBancos(String public_key, String payment_method_id){
+        return api.getBancos(public_key,payment_method_id);
+    }
+
+    public Call<CuotasPago> getCuotasPago(String public_key, String amount, String payment_method_id, String issuer_id){
+        return api.getCuotasPago(public_key,amount,payment_method_id,issuer_id);
     }
 }

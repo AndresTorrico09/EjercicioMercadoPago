@@ -2,17 +2,16 @@ package com.andresleonel09.ejerciciomercadopago.Api;
 
 import android.content.Context;
 
-import com.andresleonel09.ejerciciomercadopago.Globals;
-import com.andresleonel09.ejerciciomercadopago.MercadoPagoAplication;
-import com.andresleonel09.ejerciciomercadopago.Models.MediosPago;
+import com.andresleonel09.ejerciciomercadopago.Models.CuotasPago;
+import com.andresleonel09.ejerciciomercadopago.Utils.Globals;
+import com.andresleonel09.ejerciciomercadopago.Models.Banco;
+import com.andresleonel09.ejerciciomercadopago.Models.MedioDePago;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import rx.Observable;
-import rx.functions.Action1;
 
 /**
  * Created by Andres-PC on 2018-12-05.
@@ -37,19 +36,55 @@ public class MercadoPagoService {
 
     public void getMediosDePago(String public_key) {
         apiManager.getMediosDePago(public_key).
-        enqueue(new Callback<List<MediosPago>>() {
+        enqueue(new Callback<List<MedioDePago>>() {
             @Override
-            public void onResponse(Call<List<MediosPago>> call, Response<List<MediosPago>> response) {
-                int statusCode = response.code();
-
-                Globals g = Globals.getInstance();
-                g.setlistMP(response.body());
+            public void onResponse(Call<List<MedioDePago>> call, Response<List<MedioDePago>> response) {
+                if (response.code() == 200) {
+                    Globals g = Globals.getInstance();
+                    g.setlistMP(response.body());
+                }
             }
 
             @Override
-            public void onFailure(Call<List<MediosPago>> call, Throwable t) {
+            public void onFailure(Call<List<MedioDePago>> call, Throwable t) {
                 Throwable x = t;
             }
         });
+    }
+
+    public void getBancos(String public_key, String payment_method_id) {
+        apiManager.getBancos(public_key,payment_method_id).
+                enqueue(new Callback<List<Banco>>() {
+                    @Override
+                    public void onResponse(Call<List<Banco>> call, Response<List<Banco>> response) {
+                        if (response.code() == 200){
+                            Globals g = Globals.getInstance();
+                            g.setListBancos(response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Banco>> call, Throwable t) {
+                        Throwable x = t;
+                    }
+                });
+    }
+
+    public void getCuotasPago(String public_key, String amount, String payment_method_id, String issuer_id) {
+        apiManager.getCuotasPago(public_key,amount,payment_method_id,issuer_id).
+                enqueue(new Callback<CuotasPago>() {
+                    @Override
+                    public void onResponse(Call<CuotasPago> call, Response<CuotasPago> response) {
+                        if (response.code() == 200){
+                            Globals g = Globals.getInstance();
+                            g.setCuotasPago(response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CuotasPago> call, Throwable t) {
+                        Throwable x = t;
+                    }
+                });
     }
 }

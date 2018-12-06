@@ -1,19 +1,21 @@
-package com.andresleonel09.ejerciciomercadopago;
+package com.andresleonel09.ejerciciomercadopago.Activity;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.andresleonel09.ejerciciomercadopago.Models.PagoActual;
+import com.andresleonel09.ejerciciomercadopago.R;
+import com.andresleonel09.ejerciciomercadopago.Utils.Globals;
+
+public class IngresaMontoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,26 +28,17 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                /*Fragment nuevoFragmento = new MediosDePagoFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, nuevoFragmento);
-                transaction.addToBackStack(null);
-                transaction.commit();
-*/
                 Intent intent = new Intent(getApplicationContext(), MediosDePagoActivity.class);
                 startActivity(intent);
             }
         });
 
-/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        EditText edit = (EditText)findViewById(R.id.montoPago);
+        Double montoPago = ((edit.getText().toString().equals("")) ? 0.0 : Double.valueOf(edit.getText().toString()));
+
+        PagoActual p = Globals.getInstance().getPagoActualActual() == null ? new PagoActual() : Globals.getInstance().getPagoActualActual();
+        p.setMonto(montoPago);
+        Globals.getInstance().setPagoActualActual(p);
     }
 
     @Override
@@ -68,5 +61,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+/*        if (!ConnectionUtil.isInternetAvailable(this)) {
+            notConnection();
+        }*/
+    }
+
+    public void notConnection() {
+        Toast.makeText(this,  getResources().getString(R.string.alert_verifique_internet), Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 }

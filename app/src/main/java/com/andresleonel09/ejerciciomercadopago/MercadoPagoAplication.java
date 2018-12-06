@@ -6,14 +6,7 @@ import android.content.res.Configuration;
 import com.andresleonel09.ejerciciomercadopago.Api.ApiManager;
 import com.andresleonel09.ejerciciomercadopago.Api.MercadoPagoApi;
 import com.andresleonel09.ejerciciomercadopago.Api.MercadoPagoService;
-import com.andresleonel09.ejerciciomercadopago.Models.MediosPago;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

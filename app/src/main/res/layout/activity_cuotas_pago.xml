@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lbl_seleccione_medio_pago"
+        android:text="@string/lbl_seleccione_cuotas"
         android:layout_gravity="top"/>
 
     <Spinner
@@ -19,11 +19,11 @@
         android:layout_gravity="center"/>
 
     <Button
-        android:id="@+id/btn_siguiente"
+        android:id="@+id/btn_finalizar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:text="@string/btn_siguiente" />
+        android:text="@string/btn_finalizar" />
 
 </android.support.design.widget.CoordinatorLayout>

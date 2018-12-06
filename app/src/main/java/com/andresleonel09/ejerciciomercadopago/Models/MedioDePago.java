@@ -14,7 +14,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MediosPago {
+public class MedioDePago {
 
     @SerializedName("id")
     @Expose
@@ -59,22 +59,6 @@ public class MediosPago {
     @Expose
     private List<String> processingModes = null;
 
-    public static class MediosPagoDeserializer implements JsonDeserializer<MediosPago> {
-
-        @Override
-        public MediosPago deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            if (json == null)
-                return null;
-
-            JsonObject jObject = json.getAsJsonObject();
-
-            MediosPago mp = new MediosPago();
-            mp.setId(jObject.get("Id").getAsString());
-            mp.setName(jObject.get("Name").getAsString());
-
-            return mp;
-        }
-    }
     public String getId() {
         return id;
     }
@@ -187,4 +171,142 @@ public class MediosPago {
         this.processingModes = processingModes;
     }
 
+    public class Setting {
+
+        @SerializedName("card_number")
+        @Expose
+        private CardNumber cardNumber;
+        @SerializedName("bin")
+        @Expose
+        private Bin bin;
+        @SerializedName("security_code")
+        @Expose
+        private SecurityCode securityCode;
+
+        public CardNumber getCardNumber() {
+            return cardNumber;
+        }
+
+        public void setCardNumber(CardNumber cardNumber) {
+            this.cardNumber = cardNumber;
+        }
+
+        public Bin getBin() {
+            return bin;
+        }
+
+        public void setBin(Bin bin) {
+            this.bin = bin;
+        }
+
+        public SecurityCode getSecurityCode() {
+            return securityCode;
+        }
+
+        public void setSecurityCode(SecurityCode securityCode) {
+            this.securityCode = securityCode;
+        }
+
+
+        public class Bin {
+
+            @SerializedName("pattern")
+            @Expose
+            private String pattern;
+            @SerializedName("installments_pattern")
+            @Expose
+            private String installmentsPattern;
+            @SerializedName("exclusion_pattern")
+            @Expose
+            private Object exclusionPattern;
+
+            public String getPattern() {
+                return pattern;
+            }
+
+            public void setPattern(String pattern) {
+                this.pattern = pattern;
+            }
+
+            public String getInstallmentsPattern() {
+                return installmentsPattern;
+            }
+
+            public void setInstallmentsPattern(String installmentsPattern) {
+                this.installmentsPattern = installmentsPattern;
+            }
+
+            public Object getExclusionPattern() {
+                return exclusionPattern;
+            }
+
+            public void setExclusionPattern(Object exclusionPattern) {
+                this.exclusionPattern = exclusionPattern;
+            }
+
+        }
+
+        public class SecurityCode {
+
+            @SerializedName("length")
+            @Expose
+            private int length;
+            @SerializedName("card_location")
+            @Expose
+            private String cardLocation;
+            @SerializedName("mode")
+            @Expose
+            private String mode;
+
+            public int getLength() {
+                return length;
+            }
+
+            public void setLength(int length) {
+                this.length = length;
+            }
+
+            public String getCardLocation() {
+                return cardLocation;
+            }
+
+            public void setCardLocation(String cardLocation) {
+                this.cardLocation = cardLocation;
+            }
+
+            public String getMode() {
+                return mode;
+            }
+
+            public void setMode(String mode) {
+                this.mode = mode;
+            }
+        }
+
+        public class CardNumber {
+
+            @SerializedName("validation")
+            @Expose
+            private String validation;
+            @SerializedName("length")
+            @Expose
+            private int length;
+
+            public String getValidation() {
+                return validation;
+            }
+
+            public void setValidation(String validation) {
+                this.validation = validation;
+            }
+
+            public int getLength() {
+                return length;
+            }
+
+            public void setLength(int length) {
+                this.length = length;
+            }
+        }
+    }
 }

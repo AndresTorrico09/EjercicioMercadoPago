@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.IngresaMontoActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,7 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MediosDePagoActivity"></activity>
+        <activity
+            android:name=".Activity.MediosDePagoActivity"
+            android:parentActivityName=".Activity.IngresaMontoActivity" />
+        <activity
+            android:name=".Activity.BancosActivity"
+            android:parentActivityName=".Activity.MediosDePagoActivity" />
+        <activity
+            android:name=".Activity.CuotasPagoActivity"
+            android:parentActivityName=".Activity.BancosActivity" ></activity>
     </application>
 
 </manifest>

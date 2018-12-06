@@ -1,10 +1,15 @@
 <resources>
-    <string name="app_name">EjercicioMercadoPago</string>
+    <string name="app_name">Mercado Pago</string>
     <string name="action_settings">Configuracion</string>
 
     <string name="btn_siguiente">Siguiente</string>
+    <string name="lbl_ingrese_monto">Ingrese monto de pago</string>
+    <string name="lbl_seleccione_medio_pago">Seleccione un medio de pago: </string>
+    <string name="lbl_seleccione_banco">Seleccione un banco: </string>
+    <string name="lbl_seleccione_cuotas">Seleccione cantidad de cuotas: </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_finalizar">Finalizar pago</string>
+
+    <string name="alert_verifique_internet">Por favor, verifique su conexion a Internet.</string>
 
 </resources>
