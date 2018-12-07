@@ -7,26 +7,39 @@ package com.andresleonel09.ejerciciomercadopago.Models;
 public class PagoActual {
 
     private Double monto;
-    private String metodo_pago;
+    private String idMetodoPago;
+    private String nombreMetodoPago;
     private Integer idBanco;
+    private String nombreBanco;
+    private String cuotasPago;
 
     public PagoActual() {
 
     }
-    public PagoActual(Double monto, String metodo_pago, Integer idBanco) {
-        this.monto = monto;
-        this.metodo_pago = metodo_pago;
-        this.idBanco = idBanco;
+
+    public String getNombreBanco() {
+        return nombreBanco;
     }
 
-    public String getMetodo_pago() {
-        return metodo_pago;
+    public void setNombreBanco(String nombreBanco) {
+        this.nombreBanco = nombreBanco;
     }
 
-    public void setMetodo_pago(String metodo_pago) {
-        this.metodo_pago = metodo_pago;
+    public String getNombreMetodoPago() {
+        return nombreMetodoPago;
     }
 
+    public void setNombreMetodoPago(String nombreMetodoPago) {
+        this.nombreMetodoPago = nombreMetodoPago;
+    }
+
+    public String getIdMetodoPago() {
+        return idMetodoPago;
+    }
+
+    public void setIdMetodoPago(String idMetodoPago) {
+        this.idMetodoPago = idMetodoPago;
+    }
     public Double getMonto() {
         return monto;
     }
@@ -42,4 +55,22 @@ public class PagoActual {
     public void setIdBanco(Integer idBanco) {
         this.idBanco = idBanco;
     }
+
+    public String getCuotasPago() {
+        return cuotasPago;
+    }
+
+    public void setCuotasPago(String cuotasPago) {
+        this.cuotasPago = cuotasPago;
+    }
+
+    @Override
+    public String toString() {
+        return   "Monto pagado: "   + monto
+        + "\n" + "Metodo de pago: " + nombreMetodoPago
+        + "\n" + "Banco: "          + nombreBanco
+        + "\n" + "Detalle cuotas: " + cuotasPago;
+    }
+
+
 }

@@ -27,7 +27,7 @@ public class ApiManager {
         return api.getBancos(public_key,payment_method_id);
     }
 
-    public Call<CuotasPago> getCuotasPago(String public_key, String amount, String payment_method_id, String issuer_id){
+    public Call<List<CuotasPago>> getCuotasPago(String public_key, Double amount, String payment_method_id, String issuer_id){
         return api.getCuotasPago(public_key,amount,payment_method_id,issuer_id);
     }
 }

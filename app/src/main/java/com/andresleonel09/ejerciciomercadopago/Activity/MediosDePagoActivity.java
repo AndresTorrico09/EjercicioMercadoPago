@@ -9,8 +9,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.andresleonel09.ejerciciomercadopago.Api.MercadoPagoService;
+import com.andresleonel09.ejerciciomercadopago.MercadoPagoAplication;
 import com.andresleonel09.ejerciciomercadopago.Models.PagoActual;
-import com.andresleonel09.ejerciciomercadopago.Utils.Globals;
+import com.andresleonel09.ejerciciomercadopago.Globals;
 import com.andresleonel09.ejerciciomercadopago.Models.ItemComboData;
 import com.andresleonel09.ejerciciomercadopago.Models.MedioDePago;
 import com.andresleonel09.ejerciciomercadopago.R;
@@ -19,8 +20,7 @@ import com.andresleonel09.ejerciciomercadopago.Adapter.ComboAdapter;
 import java.util.ArrayList;
 
 public class MediosDePagoActivity extends AppCompatActivity {
-    public static final String PUBLIC_KEY = "444a9ef5-8a6b-429f-abdf-587639155d88";
-    public static final String PAYMENT_METHOD = "visa";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +40,10 @@ public class MediosDePagoActivity extends AppCompatActivity {
             }
         });
 
-        Globals g = Globals.getInstance();
         ArrayList<ItemComboData> list=new ArrayList<>();
 
-        for (MedioDePago m : g.getlistMP()) {
-            list.add(new ItemComboData(m.getId(),m.getName(),R.mipmap.ic_launcher));
+        for (MedioDePago m : Globals.getInstance().getlistMP()) {
+            list.add(new ItemComboData(m.getId(),m.getName(),m.getSecureThumbnail()));
         }
 
         Spinner sp=(Spinner)findViewById(R.id.spinner);
@@ -57,11 +56,12 @@ public class MediosDePagoActivity extends AppCompatActivity {
             {
                 ItemComboData item = (ItemComboData)parent.getItemAtPosition(position);
 
-                PagoActual p = Globals.getInstance().getPagoActualActual() == null ? new PagoActual() : Globals.getInstance().getPagoActualActual();
-                p.setMetodo_pago(item.getId());
-                Globals.getInstance().setPagoActualActual(p);
+                PagoActual p = Globals.getInstance().getPagoActual() == null ? new PagoActual() : Globals.getInstance().getPagoActual();
+                p.setIdMetodoPago(item.getId());
+                p.setNombreMetodoPago(item.getText());
+                Globals.getInstance().setPagoActual(p);
 
-                MercadoPagoService.getInstance().getBancos(PUBLIC_KEY,item.getId());
+                MercadoPagoService.getInstance().getBancos(MercadoPagoAplication.PUBLIC_KEY,item.getId());
 
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent)

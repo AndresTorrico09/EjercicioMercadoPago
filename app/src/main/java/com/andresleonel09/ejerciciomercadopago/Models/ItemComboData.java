@@ -9,11 +9,18 @@ public class ItemComboData {
     private String id;
     private String text;
     private Integer imageId;
+    private String imageURL;
 
     public ItemComboData(String id, String text, Integer imageId){
         this.id=id;
         this.text=text;
         this.imageId=imageId;
+    }
+
+    public ItemComboData(String id, String text, String imageURL){
+        this.id=id;
+        this.text=text;
+        this.imageURL=imageURL;
     }
 
     public ItemComboData(String text){
@@ -30,5 +37,13 @@ public class ItemComboData {
 
     public String getId(){
         return id;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

@@ -1,4 +1,4 @@
-package com.andresleonel09.ejerciciomercadopago.Utils;
+package com.andresleonel09.ejerciciomercadopago;
 
 import com.andresleonel09.ejerciciomercadopago.Models.Banco;
 import com.andresleonel09.ejerciciomercadopago.Models.CuotasPago;
@@ -18,7 +18,7 @@ public class Globals{
     private int data;
     private List<MedioDePago> listMP;
     private List<Banco> listBancos;
-    private CuotasPago cuotasPago;
+    private List<CuotasPago> cuotasPago;
 
     private PagoActual pagoActualActual;
 
@@ -53,19 +53,19 @@ public class Globals{
         this.listBancos = listBancos;
     }
 
-    public PagoActual getPagoActualActual() {
+    public PagoActual getPagoActual() {
         return pagoActualActual;
     }
 
-    public void setPagoActualActual(PagoActual pagoActualActual) {
+    public void setPagoActual(PagoActual pagoActualActual) {
         this.pagoActualActual = pagoActualActual;
     }
 
-    public CuotasPago getCuotasPago() {
+    public List<CuotasPago> getCuotasPago() {
         return cuotasPago;
     }
 
-    public void setCuotasPago(CuotasPago cuotasPago) {
+    public void setCuotasPago(List<CuotasPago> cuotasPago) {
         this.cuotasPago = cuotasPago;
     }
 }

@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.andresleonel09.ejerciciomercadopago.Models.PagoActual;
 import com.andresleonel09.ejerciciomercadopago.R;
-import com.andresleonel09.ejerciciomercadopago.Utils.Globals;
+import com.andresleonel09.ejerciciomercadopago.Globals;
 
 public class IngresaMontoActivity extends AppCompatActivity {
 
@@ -28,17 +28,21 @@ public class IngresaMontoActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MediosDePagoActivity.class);
-                startActivity(intent);
+                EditText edit = (EditText)findViewById(R.id.montoPago);
+
+                if (!edit.getText().toString().equals("")) {
+                    Double montoPago = Double.valueOf(edit.getText().toString());
+                    PagoActual p = Globals.getInstance().getPagoActual() == null ? new PagoActual() : Globals.getInstance().getPagoActual();
+                    p.setMonto(montoPago);
+                    Globals.getInstance().setPagoActual(p);
+
+                    Intent intent = new Intent(getApplicationContext(), MediosDePagoActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(IngresaMontoActivity.this, "Ingrese un monto de pago", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-        EditText edit = (EditText)findViewById(R.id.montoPago);
-        Double montoPago = ((edit.getText().toString().equals("")) ? 0.0 : Double.valueOf(edit.getText().toString()));
-
-        PagoActual p = Globals.getInstance().getPagoActualActual() == null ? new PagoActual() : Globals.getInstance().getPagoActualActual();
-        p.setMonto(montoPago);
-        Globals.getInstance().setPagoActualActual(p);
     }
 
     @Override

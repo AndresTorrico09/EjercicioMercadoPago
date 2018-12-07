@@ -24,8 +24,8 @@ public interface MercadoPagoApi {
                                ,@Query("payment_method_id") String payment_method_id);
 
     @GET("payment_methods/installments")
-    Call<CuotasPago> getCuotasPago(@Query("public_key") String public_key
-                                   , @Query("amount") String amount
+    Call<List<CuotasPago>> getCuotasPago(@Query("public_key") String public_key
+                                   , @Query("amount") Double amount
                                    , @Query("payment_method_id") String payment_method_id
                                    , @Query("issuer.id") String issuer_id);
 }

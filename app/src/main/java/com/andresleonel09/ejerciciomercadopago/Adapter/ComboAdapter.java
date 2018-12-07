@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.andresleonel09.ejerciciomercadopago.Models.ItemComboData;
 import com.andresleonel09.ejerciciomercadopago.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,9 @@ public class ComboAdapter extends ArrayAdapter<ItemComboData> {
         View itemView=inflater.inflate(groupid,parent,false);
 
         ImageView imageView=(ImageView)itemView.findViewById(R.id.img);
-        imageView.setImageResource(list.get(position).getImageId());
+        //imageView.setImageResource(list.get(position).getImageId());
+
+        Picasso.with(parent.getContext()).load(list.get(position).getImageURL()).into(imageView);
 
         TextView textView=(TextView)itemView.findViewById(R.id.txt);
         textView.setText(list.get(position).getText());

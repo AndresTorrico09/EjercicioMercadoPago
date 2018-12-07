@@ -3,7 +3,7 @@ package com.andresleonel09.ejerciciomercadopago.Api;
 import android.content.Context;
 
 import com.andresleonel09.ejerciciomercadopago.Models.CuotasPago;
-import com.andresleonel09.ejerciciomercadopago.Utils.Globals;
+import com.andresleonel09.ejerciciomercadopago.Globals;
 import com.andresleonel09.ejerciciomercadopago.Models.Banco;
 import com.andresleonel09.ejerciciomercadopago.Models.MedioDePago;
 
@@ -40,8 +40,7 @@ public class MercadoPagoService {
             @Override
             public void onResponse(Call<List<MedioDePago>> call, Response<List<MedioDePago>> response) {
                 if (response.code() == 200) {
-                    Globals g = Globals.getInstance();
-                    g.setlistMP(response.body());
+                    Globals.getInstance().setlistMP(response.body());
                 }
             }
 
@@ -58,8 +57,7 @@ public class MercadoPagoService {
                     @Override
                     public void onResponse(Call<List<Banco>> call, Response<List<Banco>> response) {
                         if (response.code() == 200){
-                            Globals g = Globals.getInstance();
-                            g.setListBancos(response.body());
+                            Globals.getInstance().setListBancos(response.body());
                         }
                     }
 
@@ -70,19 +68,18 @@ public class MercadoPagoService {
                 });
     }
 
-    public void getCuotasPago(String public_key, String amount, String payment_method_id, String issuer_id) {
+    public void getCuotasPago(String public_key, Double amount, String payment_method_id, String issuer_id) {
         apiManager.getCuotasPago(public_key,amount,payment_method_id,issuer_id).
-                enqueue(new Callback<CuotasPago>() {
+                enqueue(new Callback<List<CuotasPago>>() {
                     @Override
-                    public void onResponse(Call<CuotasPago> call, Response<CuotasPago> response) {
+                    public void onResponse(Call<List<CuotasPago>> call, Response<List<CuotasPago>> response) {
                         if (response.code() == 200){
-                            Globals g = Globals.getInstance();
-                            g.setCuotasPago(response.body());
+                            Globals.getInstance().setCuotasPago(response.body());
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<CuotasPago> call, Throwable t) {
+                    public void onFailure(Call<List<CuotasPago>> call, Throwable t) {
                         Throwable x = t;
                     }
                 });
